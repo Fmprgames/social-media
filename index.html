@@ -1,1 +1,108 @@
 
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social BD</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f0f2f5;font-family:Arial,sans-serif;color:#202124}
+header{background:#1877f2;color:white;padding:15px;position:sticky;top:0;z-index:5}
+nav{max-width:1000px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:25px;font-weight:bold}
+nav a{color:white;text-decoration:none;font-size:14px}
+.container{max-width:650px;margin:20px auto;padding:0 12px}
+.card{background:white;border-radius:12px;padding:16px;margin-bottom:15px;box-shadow:0 1px 4px #ddd}
+.profile{display:flex;align-items:center;gap:10px}
+.avatar{width:42px;height:42px;border-radius:50%;background:#1877f2;color:white;display:grid;place-items:center;font-weight:bold}
+.name{font-weight:bold}
+.small{font-size:12px;color:#777;margin-top:4px}
+textarea{width:100%;border:0;background:#f0f2f5;border-radius:10px;padding:14px;margin-top:15px;font-size:15px;resize:vertical}
+button{border:0;border-radius:8px;padding:11px 18px;background:#1877f2;color:white;font-weight:bold;cursor:pointer}
+.postbtn{width:100%;margin-top:10px}
+.actions{display:flex;justify-content:space-around;border-top:1px solid #eee;padding-top:12px;margin-top:12px}
+.actions button{background:white;color:#555;padding:8px}
+h2{font-size:20px;margin:0 0 15px}
+.posttext{line-height:1.6;margin:16px 0}
+footer{text-align:center;color:#777;padding:25px;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<div class="logo">Social BD</div>
+<a href="#">Home　　Profile　　Login</a>
+</nav>
+</header>
+
+<main class="container">
+<div class="card">
+<h2>Welcome to Social BD 🌍</h2>
+<p>Connect with friends. Share your world.</p>
+</div>
+
+<div class="card">
+<div class="profile">
+<div class="avatar">U</div>
+<div>
+<div class="name">Create a Post</div>
+<div class="small">Share something with everyone</div>
+</div>
+</div>
+<textarea id="postInput" rows="3" placeholder="What's on your mind?"></textarea>
+<button class="postbtn" onclick="addPost()">Publish Post</button>
+</div>
+
+<div id="feed">
+<div class="card">
+<div class="profile">
+<div class="avatar">S</div>
+<div>
+<div class="name">Social BD</div>
+<div class="small">Welcome to our community</div>
+</div>
+</div>
+<div class="posttext">🎉 Welcome to Social BD! This is the beginning of our new social community. Connect, share and make friends!</div>
+<div class="actions">
+<button onclick="likePost(this)">♡ Like</button>
+<button onclick="commentPost()">Comment</button>
+<button onclick="sharePost()">Share</button>
+</div>
+</div>
+</div>
+</main>
+
+<footer>
+© 2026 Social BD · Connect the World
+</footer>
+
+<script>
+function addPost(){
+const input=document.getElementById('postInput');
+const value=input.value.trim();
+if(!value){alert('Please write something first!');return;}
+const card=document.createElement('div');
+card.className='card';
+const profile=document.createElement('div');
+profile.className='profile';
+profile.innerHTML='<div class="avatar">U</div><div><div class="name">You</div><div class="small">Just now</div></div>';
+const content=document.createElement('div');
+content.className='posttext';
+content.textContent=value;
+const actions=document.createElement('div');
+actions.className='actions';
+actions.innerHTML='<button onclick="likePost(this)">♡ Like</button><button onclick="commentPost()">Comment</button><button onclick="sharePost()">Share</button>';
+card.append(profile,content,actions);
+document.getElementById('feed').prepend(card);
+input.value='';
+}
+function likePost(btn){
+btn.textContent=btn.textContent.includes('Liked')?'♡ Like':'♥ Liked';
+}
+function commentPost(){alert('Comment feature will be added soon!');}
+function sharePost(){alert('Share feature will be added soon!');}
+</script>
+</body>
+</html>
